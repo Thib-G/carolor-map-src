@@ -14,8 +14,11 @@
               </button>
             </div>
             <div ref="map" class="map mt-2"></div>
-            <div class="text-center">
+            <div class="d-flex justify-content-between">
               <a href="https://carolor.org/" target="_blank">carolor.org</a>
+              <a href="https://github.com/Thib-G/carolor-map-src" target="_blank">
+                <i class="fa fa-github" aria-hidden="true"></i>
+              </a>
             </div>
         </div>
       </div>
@@ -223,12 +226,5 @@ export default {
   width: 100%;
   height: 400px;
   border: 2px solid #000000;
-}
-.size-full {
-  display: block;
-  max-width: 90%;
-  max-height: 95px;
-  width: auto;
-  height: auto;
 }
 </style>
