@@ -22,7 +22,7 @@
             </div>
         </div>
       </div>
-      <div class="col-12 col-lg-6 mt-3">
+      <div class="col-12 col-lg-6 mt-3 mb-3">
         <div class="card border-dark">
           <ul class="list-group list-group-flush">
             <li class="list-group-item d-flex justify-content-between"
