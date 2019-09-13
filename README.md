@@ -1,4 +1,4 @@
-# Carol'Or map, geolocated
+# Carol’Or map, geolocated
 https://carolor.org/map/
 
 ## Project setup
