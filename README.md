@@ -31,6 +31,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Deploy
 
-* Rename `/src/public/api/inc/conf.inc.php-dist` to `conf.inc.php` and add your credentials.
+* Rename `/public/api/inc/conf.inc.php-dist` to `conf.inc.php` and add your credentials.
 * Run `npm run build`.
 * Upload the content of the `/dist` folder to your PHP-enabled server (by default to `/var/www/map/`).
