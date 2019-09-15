@@ -203,6 +203,7 @@ export default {
       this.locationGroup.addLayer(locationMarker);
       this.locationGroup.addLayer(L.circle(e.latlng, radius));
       locationMarker.openPopup();
+      this.saveLocation(e.latlng, radius);
     },
     zoomTo(m) {
       this.map.setView(m.marker.getLatLng(), 14);
@@ -213,6 +214,23 @@ export default {
       this.$nextTick(() => {
         $('#exampleModal').modal('show');
       });
+    },
+    saveLocation(latlng, radius) {
+      const params = {
+        lat: latlng.lat,
+        lng: latlng.lng,
+        radius,
+      };
+      d3Json(
+        'https://carolor.org/map/api/log/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+          body: JSON.stringify(params),
+        },
+      );
     },
   },
 };
