@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     initMap() {
-      this.map = L.map(this.$refs.map)
+      this.map = L.map(this.$refs.map, { animate: true })
         .setView([50.411609, 4.444551], 10);
       L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}@2x.png', {
         attribution: `Map tiles by <a href="http://stamen.com">Stamen Design</a>,
