@@ -182,6 +182,7 @@ export default {
                 .bindPopup(popupContent)
                 .on({
                   popupopen: (e) => { this.onPopupOpen(e, marker); },
+                  popupclose: this.onPopupClose,
                 }),
             },
           );
