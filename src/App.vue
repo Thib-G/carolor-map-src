@@ -80,11 +80,14 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import L from 'leaflet';
 import $ from 'jquery';
 import 'bootstrap';
 import { json as d3Json } from 'd3-fetch';
 import { setTimeout } from 'timers';
+
+import PopupContentComponent from '@/components/PopupContentComponent.vue';
 
 export default {
   name: 'app',
@@ -98,6 +101,7 @@ export default {
       locationGroup: L.layerGroup(),
       myLocation: [50.411609, 4.444551],
       mModal: null,
+      popupComponent: null,
     };
   },
   mounted() {
@@ -143,19 +147,17 @@ export default {
             {},
             m,
             {
+              lat: +m.lat,
+              lng: +m.lng,
+            },
+            {
               popup: m.popup
                 .replace(/http:\/\/carolor.org/g, 'https://carolor.org')
                 .replace(/http:\/\/www.carolor.org/g, 'https://www.carolor.org')
-                .replace(/(?:\r\n|\r|\n)/g, '<br>'),
+                .replace(/(?:\r\n|\r|\n)+/g, '<br>'),
             },
           );
           const popupContent = document.createElement('div');
-          popupContent.innerHTML = `
-            <h5>${marker.name}</h5>
-            <button type="button" class="btn btn-light btn-sm">Détail</button>
-          `;
-          const btn = popupContent.querySelector('button');
-          btn.addEventListener('click', () => this.showModal(marker));
 
           const icon = L.icon({
             iconUrl: `https://carolor.org/wp-content/uploads/maps-marker-pro/icons/${marker.icon}`,
@@ -177,11 +179,29 @@ export default {
             marker,
             {
               marker: L.marker([m.lat, m.lng], { icon })
-                .bindPopup(popupContent),
+                .bindPopup(popupContent)
+                .on({
+                  popupopen: (e) => { this.onPopupOpen(e, marker); },
+                }),
             },
           );
         });
       });
+    },
+    onPopupOpen(e, marker) {
+      const { popup } = e;
+      const ComponentConstructor = Vue.extend(PopupContentComponent);
+      this.popupComponent = new ComponentConstructor({
+        propsData: { m: marker },
+        parent: this,
+      }).$mount();
+      this.popupComponent.$on('showModal', (mm) => {
+        this.showModal(mm);
+      });
+      popup.setContent(this.popupComponent.$el);
+    },
+    onPopupClose() {
+      this.popupComponent.$destroy();
     },
     locate() {
       this.map.locate({ setView: true, maxZoom: 14 });
@@ -216,6 +236,9 @@ export default {
       });
     },
     saveLocation(latlng, radius) {
+      if (process.env.NODE_ENV === 'development') {
+        return;
+      }
       const params = {
         lat: latlng.lat,
         lng: latlng.lng,
@@ -244,5 +267,9 @@ export default {
   width: 100%;
   height: 400px;
   border: 2px solid #000000;
+}
+.modal-body img {
+  max-width: 300px;
+  height: auto;
 }
 </style>
