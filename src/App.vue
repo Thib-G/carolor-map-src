@@ -10,7 +10,7 @@
                       class="btn btn-primary"
                       @click="locate">
                 <i class="fa fa-location-arrow" aria-hidden="true">
-                </i>&nbsp;&nbsp;Localisez-moi!
+                </i>&nbsp;&nbsp;Localisez-moi&nbsp;!
               </button>
             </div>
             <div ref="map" class="map mt-2"></div>
@@ -24,24 +24,24 @@
       </div>
       <div class="col-12 col-lg-6 mt-3 mb-3">
         <div class="card border-dark">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex justify-content-between"
-                v-for="m in markersSorted"
-                :key="m.id">
+          <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action d-flex justify-content-between"
+                v-for="(m, index) in markersSorted"
+                :key="m.id"
+                href @click.prevent="showModal(m)">
               <span>
-                <a href @click.prevent="showModal(m)">
-                  {{ m.name }}
-                </a>
+                <small>{{ index + 1}}.</small>&nbsp;
+                <a href @click.prevent="showModal(m)">{{ m.name }}</a>&nbsp;
                 <span class="badge badge-pill badge-warning">
                   {{ (m.distance / 1000).toFixed(1) }} km</span>
               </span>
               <button type="button"
                       class="btn btn-primary btn-sm"
-                      @click="zoomTo(m)">
+                      @click.prevent.stop="zoomTo(m)">
                 <i class="fa fa-search"></i>&nbsp;&nbsp;Zoom
               </button>
-            </li>
-          </ul>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -56,7 +56,8 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{ mModal.name }}</h5>
+            <h5 class="modal-title" id="exampleModalLabel">{{ mModal.name }}
+              <small><small><br />{{ mModal.address }}</small></small></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
