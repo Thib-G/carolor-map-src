@@ -118,11 +118,11 @@ export default {
   computed: {
     markersSorted() {
       return this.markers
-        .map(m => Object.assign(
-          {},
-          m,
-          { distance: L.latLng(this.myLocation).distanceTo(L.latLng([m.lat, m.lng])) },
-        ))
+        .map((m) => ({
+
+          ...m,
+          distance: L.latLng(this.myLocation).distanceTo(L.latLng([m.lat, m.lng])),
+        }))
         .sort((a, b) => a.distance - b.distance);
     },
   },
@@ -144,20 +144,16 @@ export default {
       const json = 'https://carolor.org/map/api/partners/';
       return d3Json(json).then((data) => {
         this.markers = data.map((m) => {
-          const marker = Object.assign(
-            {},
-            m,
-            {
-              lat: +m.lat,
-              lng: +m.lng,
-            },
-            {
-              popup: m.popup
-                .replace(/http:\/\/carolor.org/g, 'https://carolor.org')
-                .replace(/http:\/\/www.carolor.org/g, 'https://www.carolor.org')
-                .replace(/(?:\r\n|\r|\n)+/g, '<br>'),
-            },
-          );
+          const marker = {
+
+            ...m,
+            lat: +m.lat,
+            lng: +m.lng,
+            popup: m.popup
+              .replace(/http:\/\/carolor.org/g, 'https://carolor.org')
+              .replace(/http:\/\/www.carolor.org/g, 'https://www.carolor.org')
+              .replace(/(?:\r\n|\r|\n)+/g, '<br>'),
+          };
           const popupContent = document.createElement('div');
 
           const icon = L.icon({
@@ -175,18 +171,16 @@ export default {
             popupAnchor: [0, -30],
           });
 
-          return Object.assign(
-            {},
-            marker,
-            {
-              marker: L.marker([m.lat, m.lng], { icon })
-                .bindPopup(popupContent)
-                .on({
-                  popupopen: (e) => { this.onPopupOpen(e, marker); },
-                  popupclose: this.onPopupClose,
-                }),
-            },
-          );
+          return {
+
+            ...marker,
+            marker: L.marker([m.lat, m.lng], { icon })
+              .bindPopup(popupContent)
+              .on({
+                popupopen: (e) => { this.onPopupOpen(e, marker); },
+                popupclose: this.onPopupClose,
+              }),
+          };
         });
       });
     },
