@@ -1,0 +1,74 @@
+category;icon;map_id
+Autre;blank_white.png;4
+Traiteur;gourmet_0star.png;4
+Pizzeria;pizzaria.png;4
+Restaurant;restaurant.png;4
+Services Financiers;administration.png;5
+Services;contract.png;5
+Boucherie;butcher-2.png;6
+Epicerie;conveniencestore.png;6
+Poissonnerie;fishingstore.png;6
+Supermarché;supermarket.png;6
+Chocolaterie;anniversary.png;7
+Boulangerie;bread.png;8
+Patisserie;patisserie.png;8
+Coiffure;barber.png;9
+Bar;bar_coktail.png;10
+Café;bar.png;10
+Salon de thé;coffee.png;10
+Bar à vin;winebar.png;10
+Cinéma;cinema.png;11
+Théâtre, Spectacle;theater.png;11
+Pharmacie;medicine.png;12
+Parapharmacie;quadrifoglio.png;12
+Herboristerie;grass.png;13
+Lithothérapie;mountains.png;13
+Bien-être;smiley_happy.png;13
+Eleveur;farm-2.png;14
+Jardinerie;flowers.png;14
+Producteur Local;grocery.png;14
+Bijouterie;jewelry.png;15
+Opticien;ophthalmologist.png;16
+Mode Femmes;clothers_female.png;17
+Mode;clothers_male.png;17
+Chaussures;shoes.png;18
+Musée Art;museum_paintings.png;19
+Musée Photographie;photo.png;19
+Snack;fastfood.png;20
+Sandwicherie;sandwich.png;20
+Fleuriste;garden-1.png;21
+Cadeaux;gifts.png;21
+Centre jeux, attractions;regroup-1.png;22
+Jouets;toys.png;22
+Salle Sport;fitness.png;23
+Club Sportif;jogging.png;23
+Magasin Sport;soccer.png;23
+Piscine;swimming.png;23
+Magasin BD;comics.png;24
+Librairie;library.png;24
+Association;group.png;25
+Artiste Graphique;kids.png;26
+Artiste Musical;music_classical.png;26
+Savons, Parfums;perfumery.png;27
+Décoration;craftstore.png;28
+Magasin décoration, mode, accessoires;departmentstore.png;28
+Aménagement Intérieur;home.png;28
+Seconde Main;recycle.png;28
+Textiles;textiles.png;28
+Miellerie & Apiculteur;bee.png;29
+Bricolage;tools.png;29
+Enseignement;university.png;30
+Dentiste;dentist.png;31
+Thérapeute;smiley_happy.png;32
+Construction;construction.png;33
+Soins Animaliers;pets-1.png;34
+Toilettage;pets.png;34
+Vétérinaire;veterinary.png;34
+Serrurier;key.png;35
+Coordonier;workcase.png;35
+Informatique;computers.png;36
+Sanitaire, Chauffage;fire.png;37
+Gîte;hostel_0star.png;38
+Hotel;hotel_0star.png;38
+Centre Médical;firstaid.png;39
+Médecin;medicine.png;39
