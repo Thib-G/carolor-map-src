@@ -32,6 +32,7 @@ Opticien,ophthalmologist.png,16
 Mode Femmes,clothers_female.png,17
 Mode,clothers_male.png,17
 Chaussures,shoes.png,18
+Musée,museum_crafts.png,19
 Musée Art,museum_paintings.png,19
 Musée Photographie,photo.png,19
 Snack,fastfood.png,20
@@ -67,6 +68,7 @@ Vétérinaire,veterinary.png,34
 Serrurier,key.png,35
 Coordonier,workcase.png,35
 Informatique,computers.png,36
+Photographie,photo.png,36
 "Sanitaire, Chauffage",fire.png,37
 Gîte,hostel_0star.png,38
 Hotel,hotel_0star.png,38
