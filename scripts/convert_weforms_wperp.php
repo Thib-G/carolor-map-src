@@ -29,7 +29,11 @@ try {
     circularit_.meta_value != '' AS circularit_,
     asbl.meta_value != '' AS asbl,
     rgpd.meta_value != '' AS rgpd,
-    iban.meta_value AS iban
+    iban.meta_value AS iban,
+    fixe_activit_.meta_value AS fixe_activit_,
+    portable_activit_.meta_value AS portable_activit_,
+    fixe.meta_value AS fixe,
+    civilit_.meta_value AS civilit_
   FROM
     mod248_weforms_entries e
   LEFT JOIN mod248_weforms_entrymeta AS identit_
@@ -72,6 +76,14 @@ try {
     ON e.id = rgpd.weforms_entry_id AND rgpd.meta_key = 'rgpd'
   LEFT JOIN mod248_weforms_entrymeta AS iban
     ON e.id = iban.weforms_entry_id AND iban.meta_key = 'iban'
+  LEFT JOIN mod248_weforms_entrymeta AS fixe_activit_
+    ON e.id = fixe_activit_.weforms_entry_id AND fixe_activit_.meta_key = 'fixe_activit_'
+  LEFT JOIN mod248_weforms_entrymeta AS portable_activit_
+    ON e.id = portable_activit_.weforms_entry_id AND portable_activit_.meta_key = 'portable_activit_'
+  LEFT JOIN mod248_weforms_entrymeta AS fixe
+    ON e.id = fixe.weforms_entry_id AND fixe.meta_key = 'fixe'
+  LEFT JOIN mod248_weforms_entrymeta AS civilit_
+    ON e.id = civilit_.weforms_entry_id AND civilit_.meta_key = 'civilit_'
   WHERE
     e.form_id = 2082
     AND e.id NOT IN (SELECT other+0 AS id FROM mod248_erp_peoples WHERE other IS NOT NULL)
@@ -186,7 +198,7 @@ SQL;
     $last_name = '(company)';    // last_name,
     $email = strtolower(trim($row['email']));    // company,
     $company = $row['text_3'];    // email,
-    $phone = $row['text_6'];    // phone,
+    $phone = $row['fixe_activit_'];    // phone,
     $mobile = $row['portable'];    // mobile,
     $other = $row['id'];    // other,
     $website = $row['site'];    // website,
@@ -256,7 +268,10 @@ SQL;
       'facebook' => $row['facebook'],
       'mmp_encoded_id' => '-1',
       'photo_id' => $image_id,
-      'iban' => $row['iban']
+      'iban' => $row['iban'],
+      'mobile_activit_' => $row['portable_activit_'],
+      'phone_number_responsable' => $row['fixe'],
+      'civilit_' => $row['civilit_']
     );
     foreach ($keyval as $k => $v) {
       $stmt_peoplemeta->bind_param('iss', $people_id, $k, $v);
