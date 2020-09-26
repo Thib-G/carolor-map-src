@@ -1,4 +1,4 @@
-﻿category,icon,map_id
+category,icon,map_id
 Autre,blank_white.png,4
 Traiteur,gourmet_0star.png,4
 Pizzeria,pizzaria.png,4
@@ -54,6 +54,7 @@ Artiste Musical,music_classical.png,26
 Décoration,craftstore.png,28
 "Magasin décoration, mode, accessoires",departmentstore.png,28
 Aménagement Intérieur,home.png,28
+Electroménager,laundromat.png,28
 Seconde Main,recycle.png,28
 Textiles,textiles.png,28
 Miellerie & Apiculteur,bee.png,29
@@ -74,3 +75,5 @@ Gîte,hostel_0star.png,38
 Hotel,hotel_0star.png,38
 Centre Médical,firstaid.png,39
 Médecin,medicine.png,39
+Peinture,paint.png,28
+Média,newsagent.png,11
