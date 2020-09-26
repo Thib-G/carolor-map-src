@@ -49,7 +49,10 @@ $query = <<<END
     m_num_ro_entreprise.meta_value AS m_num_ro_entreprise,
     m_secteur_d_activit_.meta_value AS m_secteur_d_activit_,
     m_facebook.meta_value AS facebook,
-    m_iban.meta_value AS m_iban
+    m_iban.meta_value AS m_iban,
+    civilit_.meta_value AS civilit_,
+    mobile_activit_.meta_value AS mobile_activit_,
+    phone_number_responsable.meta_value AS phone_number_responsable
   FROM
     `mod248_erp_peoples` AS p
   JOIN
@@ -87,7 +90,16 @@ $query = <<<END
     ON p.id = m_facebook.erp_people_id AND m_facebook.meta_key = 'facebook'
   LEFT JOIN
     `mod248_erp_peoplemeta` AS m_iban
-    ON p.id = m_iban.erp_people_id AND m_iban.meta_key = 'iban';
+    ON p.id = m_iban.erp_people_id AND m_iban.meta_key = 'iban'
+  LEFT JOIN
+    `mod248_erp_peoplemeta` AS civilit_
+    ON p.id = civilit_.erp_people_id AND civilit_.meta_key = 'civilit_'
+  LEFT JOIN
+    `mod248_erp_peoplemeta` AS mobile_activit_
+    ON p.id = mobile_activit_.erp_people_id AND mobile_activit_.meta_key = 'mobile_activi_'
+  LEFT JOIN
+    `mod248_erp_peoplemeta` AS phone_number_responsable
+    ON p.id = phone_number_responsable.erp_people_id AND phone_number_responsable.meta_key = 'phone_number_responsable';
 END;
 
 $res = $mysqli->query($query);
