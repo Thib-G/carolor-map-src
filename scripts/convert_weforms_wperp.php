@@ -182,7 +182,11 @@ SQL;
     }
     if ($row['secteur_d_activit_'] == 'Autre') {
       $ok = False;
-      $notes .= 'Le secteur activité est Autre';
+      $notes .= 'Le secteur activité est Autre'.PHP_EOL;
+    }
+    if ($row['portable'] == '' && $row['fixe_activit_'] == '' && $row['portable_activit_'] == '' && $row['fixe'] == '') {
+      $ok = False;
+      $notes .= 'Un numéro de téléphone est manquant'.PHP_EOL;
     }
 
     $responsable_pr_nom = '';

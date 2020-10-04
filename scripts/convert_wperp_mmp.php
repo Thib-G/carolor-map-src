@@ -92,17 +92,9 @@ try {
     ON CAST(p_photo_id.meta_value AS SIGNED) = image_metadata.post_id
     AND image_metadata.meta_key = '_wp_attachment_metadata'
   WHERE
-    (
-      contact_owner = 25
-      AND p.life_stage = 'subscriber'
-      AND p_mmp_encoded_id.meta_value = '-1'
-      AND TRIM(p.postal_code) LIKE '60__'
-    )
-    OR
-    (
-      p.life_stage = 'customer'
-      AND p_mmp_encoded_id.meta_value = '-1'
-    )
+    p.contact_owner NOT IN (25, 26)
+    AND p.life_stage IN ('customer', 'subscriber')
+    AND p_mmp_encoded_id.meta_value = '-1'
     AND p_secteur_d_activit_.meta_value != 'Autre';
 SQL;
 
