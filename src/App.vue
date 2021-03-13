@@ -200,7 +200,7 @@ export default {
       this.popupComponent.$destroy();
     },
     locate() {
-      this.map.locate({ setView: true, maxZoom: 14 });
+      this.map.locate({ setView: true, maxZoom: 16 });
     },
     udpateMarkersOnMap() {
       this.lg.clearLayers();
