@@ -76,7 +76,7 @@ while ($row = $res->fetch_assoc()) {
   $data[] = $row;
 }
 
-$data_utf8 = utf8ize($data);
+$data_utf8 = $data;
 
 foreach ($data_utf8 as $line){
  fputcsv($file, $line);
@@ -93,15 +93,5 @@ readfile($filename);
 
 // deleting file
 unlink($filename);
-exit();
 
-function utf8ize($d) {
-  if (is_array($d)) {
-      foreach ($d as $k => $v) {
-          $d[$k] = utf8ize($v);
-      }
-  } else if (is_string ($d)) {
-      return utf8_encode($d);
-  }
-  return $d;
-}
+exit();

@@ -65,18 +65,7 @@ END;
 
 $res = $mysqli->query($query);
 
-$arr = utf8ize($res->fetch_all(MYSQLI_ASSOC));
-
-function utf8ize($d) {
-  if (is_array($d)) {
-      foreach ($d as $k => $v) {
-          $d[$k] = utf8ize($v);
-      }
-  } else if (is_string ($d)) {
-      return utf8_encode($d);
-  }
-  return $d;
-}
+$arr = $res->fetch_all(MYSQLI_ASSOC);
 
 ?><html lang="en">
 <head>
