@@ -1,6 +1,6 @@
 <?php
 
-include('../inc/conn.inc.php');
+include('../inc/conn.inc.php'); 
 
 $query = <<<END
   SELECT
