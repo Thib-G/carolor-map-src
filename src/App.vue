@@ -3,7 +3,8 @@
     <div class="row">
       <div class="col-12 col-lg-6 mt-3">
         <div class="sticky-top">
-          <h2 class="partners text-center"><img src="@/assets/img/carolor-logo.svg" height="72">
+          <h2 class="partners text-center">
+            <img src="@/assets/img/carolor-logo.svg" height="72" alt="Carol'Or logo">
           Partenaires</h2>
             <div class="text-center">
               <button type="button"
@@ -17,7 +18,7 @@
             <div class="d-flex justify-content-between">
               <a href="https://carolor.org/" target="_blank">carolor.org</a>
               <a href="https://github.com/Thib-G/carolor-map-src" target="_blank">
-                <i class="fa fa-github" aria-hidden="true"></i>
+                <i class="fa fa-github" aria-hidden="true"></i> Github
               </a>
             </div>
         </div>
@@ -26,12 +27,17 @@
         <div class="card border-dark">
           <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action d-flex justify-content-between"
-                v-for="(m, index) in markersSorted"
-                :key="m.id"
-                href @click.prevent="showModal(m)">
+              v-for="(m, index) in markersSorted"
+              :key="m.id"
+              href
+              @click.prevent="showModal(m)"
+              @keydown.prevent="showModal(m)"
+            >
               <span>
                 <small>{{ index + 1}}.</small>&nbsp;
-                <a href @click.prevent="showModal(m)">{{ m.name }}</a>&nbsp;
+                <a href
+                  @click.prevent="showModal(m)"
+                  @keydown.prevent="showModal(m)">{{ m.name }}</a>&nbsp;
                 <span class="badge badge-pill badge-warning">
                   {{ (m.distance / 1000).toFixed(1) }} km</span>
               </span>
@@ -86,7 +92,6 @@ import L from 'leaflet';
 import $ from 'jquery';
 import 'bootstrap';
 import { json as d3Json } from 'd3-fetch';
-import { setTimeout } from 'timers';
 
 import PopupContentComponent from '@/components/PopupContentComponent.vue';
 
@@ -130,11 +135,12 @@ export default {
     initMap() {
       this.map = L.map(this.$refs.map, { animate: true })
         .setView([50.411609, 4.444551], 10);
-      L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}@2x.png', {
-        attribution: `Map tiles by <a href="http://stamen.com">Stamen Design</a>,
-          under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>.
-          Data by <a href="http://openstreetmap.org">OpenStreetMap</a>,
-          under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.`,
+      L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}{r}.png ', {
+        attribution: `&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>
+          &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a>
+          &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a>
+          &copy; <a href="https://www.openstreetmap.org/copyright/" target="_blank">OpenStreetMap</a>
+        `,
       }).addTo(this.map);
       this.lg.addTo(this.map);
       this.locationGroup.addTo(this.map);
