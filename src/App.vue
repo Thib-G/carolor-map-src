@@ -220,7 +220,7 @@ export default {
       this.myLocation = e.latlng;
 
       const locationMarker = L.marker(e.latlng)
-        .bindPopup(`Vous êtes dans un rayon de ${radius} mètres de ce point`);
+        .bindPopup(`Vous êtes dans un rayon de ${radius.toFixed(1)} mètres de ce point`);
 
       this.locationGroup.addLayer(locationMarker);
       this.locationGroup.addLayer(L.circle(e.latlng, radius));
